@@ -38,6 +38,7 @@ export const AI_APPS = [
   { key: "pulse", name: "Pulse", hint: "Analyste vocal du tableau de bord Odoo" },
   { key: "pulsesupport", name: "PulseSupport", hint: "Analyse IA des appels du support vocal" },
   { key: "ecoflux", name: "Ecoflux", hint: "Ingénierie économique des processus" },
+  { key: "kooky", name: "KOOKY", hint: "Recherche et analyse de prospects pour Odoo CRM" },
 ] as const;
 
 export type AiAppKey = (typeof AI_APPS)[number]["key"];
@@ -74,6 +75,7 @@ export const RECOMMENDED: Record<AiAppKey, string> = {
   pulse: "openai/gpt-6-astra",
   pulsesupport: "openai/gpt-6-astra",
   ecoflux: "openai/gpt-6-sol",
+  kooky: "openai/gpt-6-sol",
 };
 
 export function isCentralModel(id: unknown): id is string {

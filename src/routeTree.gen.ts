@@ -31,6 +31,7 @@ import { Route as AuthenticatedFeelooRouteRouteImport } from './routes/_authenti
 import { Route as AuthenticatedFinancierplanRouteRouteImport } from './routes/_authenticated/financierplan/route'
 import { Route as AuthenticatedHistoryRouteImport } from './routes/_authenticated/history'
 import { Route as AuthenticatedIdeasRouteImport } from './routes/_authenticated/ideas'
+import { Route as AuthenticatedKookyRouteRouteImport } from './routes/_authenticated/kooky/route'
 import { Route as AuthenticatedMmRouteImport } from './routes/_authenticated/mm'
 import { Route as AuthenticatedNexusjobRouteRouteImport } from './routes/_authenticated/nexusjob/route'
 import { Route as AuthenticatedNojectRouteRouteImport } from './routes/_authenticated/noject/route'
@@ -52,6 +53,7 @@ import { Route as AuthenticatedStudioproduitRouteRouteImport } from './routes/_a
 import { Route as ApiAnalyzeRouteImport } from './routes/api/analyze'
 import { Route as ApiChatRouteImport } from './routes/api/chat'
 import { Route as ApiChytectEditImageRouteImport } from './routes/api/chytect-edit-image'
+import { Route as ApiKookyStepRouteImport } from './routes/api/kooky-step'
 import { Route as CalendskyIndexRouteImport } from './routes/calendsky.index'
 import { Route as CalendskyPlanningRouteImport } from './routes/calendsky.planning'
 import { Route as ImmoBienIdRouteImport } from './routes/immo-bien.$id'
@@ -130,6 +132,8 @@ import { Route as AuthenticatedFinancierplanParametresRouteImport } from './rout
 import { Route as AuthenticatedImmoIndexRouteImport } from './routes/_authenticated/immo/index'
 import { Route as AuthenticatedImmoMesBiensRouteImport } from './routes/_authenticated/immo/mes-biens'
 import { Route as AuthenticatedImmoNouveauRouteImport } from './routes/_authenticated/immo/nouveau'
+import { Route as AuthenticatedKookyIndexRouteImport } from './routes/_authenticated/kooky/index'
+import { Route as AuthenticatedKookyDashboardRouteImport } from './routes/_authenticated/kooky/dashboard'
 import { Route as AuthenticatedMmIndexRouteImport } from './routes/_authenticated/mm/index'
 import { Route as AuthenticatedMmCockpitRouteImport } from './routes/_authenticated/mm/cockpit'
 import { Route as AuthenticatedMmConnectionsRouteImport } from './routes/_authenticated/mm/connections'
@@ -418,6 +422,11 @@ const AuthenticatedIdeasRoute = AuthenticatedIdeasRouteImport.update({
   path: '/ideas',
   getParentRoute: () => AuthenticatedRouteRoute,
 } as any)
+const AuthenticatedKookyRouteRoute = AuthenticatedKookyRouteRouteImport.update({
+  id: '/kooky',
+  path: '/kooky',
+  getParentRoute: () => AuthenticatedRouteRoute,
+} as any)
 const AuthenticatedMmRoute = AuthenticatedMmRouteImport.update({
   id: '/mm',
   path: '/mm',
@@ -531,6 +540,11 @@ const ApiChatRoute = ApiChatRouteImport.update({
 const ApiChytectEditImageRoute = ApiChytectEditImageRouteImport.update({
   id: '/api/chytect-edit-image',
   path: '/api/chytect-edit-image',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const ApiKookyStepRoute = ApiKookyStepRouteImport.update({
+  id: '/api/kooky-step',
+  path: '/api/kooky-step',
   getParentRoute: () => rootRouteImport,
 } as any)
 const CalendskyIndexRoute = CalendskyIndexRouteImport.update({
@@ -967,6 +981,17 @@ const AuthenticatedImmoNouveauRoute =
     id: '/immo/nouveau',
     path: '/immo/nouveau',
     getParentRoute: () => AuthenticatedRouteRoute,
+  } as any)
+const AuthenticatedKookyIndexRoute = AuthenticatedKookyIndexRouteImport.update({
+  id: '/',
+  path: '/',
+  getParentRoute: () => AuthenticatedKookyRouteRoute,
+} as any)
+const AuthenticatedKookyDashboardRoute =
+  AuthenticatedKookyDashboardRouteImport.update({
+    id: '/dashboard',
+    path: '/dashboard',
+    getParentRoute: () => AuthenticatedKookyRouteRoute,
   } as any)
 const AuthenticatedMmIndexRoute = AuthenticatedMmIndexRouteImport.update({
   id: '/',
@@ -1993,6 +2018,7 @@ export interface FileRoutesByFullPath {
   '/facturodoo': typeof AuthenticatedFacturodooRouteRouteWithChildren
   '/feeloo': typeof AuthenticatedFeelooRouteRouteWithChildren
   '/financierplan': typeof AuthenticatedFinancierplanRouteRouteWithChildren
+  '/kooky': typeof AuthenticatedKookyRouteRouteWithChildren
   '/nexusjob': typeof AuthenticatedNexusjobRouteRouteWithChildren
   '/noject': typeof AuthenticatedNojectRouteRouteWithChildren
   '/ocktavus': typeof AuthenticatedOcktavusRouteRouteWithChildren
@@ -2020,6 +2046,7 @@ export interface FileRoutesByFullPath {
   '/api/analyze': typeof ApiAnalyzeRoute
   '/api/chat': typeof ApiChatRoute
   '/api/chytect-edit-image': typeof ApiChytectEditImageRoute
+  '/api/kooky-step': typeof ApiKookyStepRoute
   '/calendsky/planning': typeof CalendskyPlanningRoute
   '/immo-bien/$id': typeof ImmoBienIdRoute
   '/pascal-google/callback': typeof PascalGoogleCallbackRoute
@@ -2084,6 +2111,7 @@ export interface FileRoutesByFullPath {
   '/financierplan/parametres': typeof AuthenticatedFinancierplanParametresRoute
   '/immo/mes-biens': typeof AuthenticatedImmoMesBiensRoute
   '/immo/nouveau': typeof AuthenticatedImmoNouveauRoute
+  '/kooky/dashboard': typeof AuthenticatedKookyDashboardRoute
   '/mm/cockpit': typeof AuthenticatedMmCockpitRoute
   '/mm/connections': typeof AuthenticatedMmConnectionsRoute
   '/mm/costs': typeof AuthenticatedMmCostsRoute
@@ -2194,6 +2222,7 @@ export interface FileRoutesByFullPath {
   '/feeloo/': typeof AuthenticatedFeelooIndexRoute
   '/financierplan/': typeof AuthenticatedFinancierplanIndexRoute
   '/immo/': typeof AuthenticatedImmoIndexRoute
+  '/kooky/': typeof AuthenticatedKookyIndexRoute
   '/mm/': typeof AuthenticatedMmIndexRoute
   '/nexusjob/': typeof AuthenticatedNexusjobIndexRoute
   '/noject/': typeof AuthenticatedNojectIndexRoute
@@ -2288,6 +2317,7 @@ export interface FileRoutesByTo {
   '/api/analyze': typeof ApiAnalyzeRoute
   '/api/chat': typeof ApiChatRoute
   '/api/chytect-edit-image': typeof ApiChytectEditImageRoute
+  '/api/kooky-step': typeof ApiKookyStepRoute
   '/calendsky/planning': typeof CalendskyPlanningRoute
   '/immo-bien/$id': typeof ImmoBienIdRoute
   '/pascal-google/callback': typeof PascalGoogleCallbackRoute
@@ -2352,6 +2382,7 @@ export interface FileRoutesByTo {
   '/financierplan/parametres': typeof AuthenticatedFinancierplanParametresRoute
   '/immo/mes-biens': typeof AuthenticatedImmoMesBiensRoute
   '/immo/nouveau': typeof AuthenticatedImmoNouveauRoute
+  '/kooky/dashboard': typeof AuthenticatedKookyDashboardRoute
   '/mm/cockpit': typeof AuthenticatedMmCockpitRoute
   '/mm/connections': typeof AuthenticatedMmConnectionsRoute
   '/mm/costs': typeof AuthenticatedMmCostsRoute
@@ -2461,6 +2492,7 @@ export interface FileRoutesByTo {
   '/feeloo': typeof AuthenticatedFeelooIndexRoute
   '/financierplan': typeof AuthenticatedFinancierplanIndexRoute
   '/immo': typeof AuthenticatedImmoIndexRoute
+  '/kooky': typeof AuthenticatedKookyIndexRoute
   '/mm': typeof AuthenticatedMmIndexRoute
   '/nexusjob': typeof AuthenticatedNexusjobIndexRoute
   '/noject': typeof AuthenticatedNojectIndexRoute
@@ -2555,6 +2587,7 @@ export interface FileRoutesById {
   '/_authenticated/facturodoo': typeof AuthenticatedFacturodooRouteRouteWithChildren
   '/_authenticated/feeloo': typeof AuthenticatedFeelooRouteRouteWithChildren
   '/_authenticated/financierplan': typeof AuthenticatedFinancierplanRouteRouteWithChildren
+  '/_authenticated/kooky': typeof AuthenticatedKookyRouteRouteWithChildren
   '/_authenticated/nexusjob': typeof AuthenticatedNexusjobRouteRouteWithChildren
   '/_authenticated/noject': typeof AuthenticatedNojectRouteRouteWithChildren
   '/_authenticated/ocktavus': typeof AuthenticatedOcktavusRouteRouteWithChildren
@@ -2583,6 +2616,7 @@ export interface FileRoutesById {
   '/api/analyze': typeof ApiAnalyzeRoute
   '/api/chat': typeof ApiChatRoute
   '/api/chytect-edit-image': typeof ApiChytectEditImageRoute
+  '/api/kooky-step': typeof ApiKookyStepRoute
   '/calendsky/planning': typeof CalendskyPlanningRoute
   '/immo-bien/$id': typeof ImmoBienIdRoute
   '/pascal-google/callback': typeof PascalGoogleCallbackRoute
@@ -2648,6 +2682,7 @@ export interface FileRoutesById {
   '/_authenticated/financierplan/parametres': typeof AuthenticatedFinancierplanParametresRoute
   '/_authenticated/immo/mes-biens': typeof AuthenticatedImmoMesBiensRoute
   '/_authenticated/immo/nouveau': typeof AuthenticatedImmoNouveauRoute
+  '/_authenticated/kooky/dashboard': typeof AuthenticatedKookyDashboardRoute
   '/_authenticated/mm/cockpit': typeof AuthenticatedMmCockpitRoute
   '/_authenticated/mm/connections': typeof AuthenticatedMmConnectionsRoute
   '/_authenticated/mm/costs': typeof AuthenticatedMmCostsRoute
@@ -2758,6 +2793,7 @@ export interface FileRoutesById {
   '/_authenticated/feeloo/': typeof AuthenticatedFeelooIndexRoute
   '/_authenticated/financierplan/': typeof AuthenticatedFinancierplanIndexRoute
   '/_authenticated/immo/': typeof AuthenticatedImmoIndexRoute
+  '/_authenticated/kooky/': typeof AuthenticatedKookyIndexRoute
   '/_authenticated/mm/': typeof AuthenticatedMmIndexRoute
   '/_authenticated/nexusjob/': typeof AuthenticatedNexusjobIndexRoute
   '/_authenticated/noject/': typeof AuthenticatedNojectIndexRoute
@@ -2852,6 +2888,7 @@ export interface FileRouteTypes {
     | '/facturodoo'
     | '/feeloo'
     | '/financierplan'
+    | '/kooky'
     | '/nexusjob'
     | '/noject'
     | '/ocktavus'
@@ -2879,6 +2916,7 @@ export interface FileRouteTypes {
     | '/api/analyze'
     | '/api/chat'
     | '/api/chytect-edit-image'
+    | '/api/kooky-step'
     | '/calendsky/planning'
     | '/immo-bien/$id'
     | '/pascal-google/callback'
@@ -2943,6 +2981,7 @@ export interface FileRouteTypes {
     | '/financierplan/parametres'
     | '/immo/mes-biens'
     | '/immo/nouveau'
+    | '/kooky/dashboard'
     | '/mm/cockpit'
     | '/mm/connections'
     | '/mm/costs'
@@ -3053,6 +3092,7 @@ export interface FileRouteTypes {
     | '/feeloo/'
     | '/financierplan/'
     | '/immo/'
+    | '/kooky/'
     | '/mm/'
     | '/nexusjob/'
     | '/noject/'
@@ -3147,6 +3187,7 @@ export interface FileRouteTypes {
     | '/api/analyze'
     | '/api/chat'
     | '/api/chytect-edit-image'
+    | '/api/kooky-step'
     | '/calendsky/planning'
     | '/immo-bien/$id'
     | '/pascal-google/callback'
@@ -3211,6 +3252,7 @@ export interface FileRouteTypes {
     | '/financierplan/parametres'
     | '/immo/mes-biens'
     | '/immo/nouveau'
+    | '/kooky/dashboard'
     | '/mm/cockpit'
     | '/mm/connections'
     | '/mm/costs'
@@ -3320,6 +3362,7 @@ export interface FileRouteTypes {
     | '/feeloo'
     | '/financierplan'
     | '/immo'
+    | '/kooky'
     | '/mm'
     | '/nexusjob'
     | '/noject'
@@ -3413,6 +3456,7 @@ export interface FileRouteTypes {
     | '/_authenticated/facturodoo'
     | '/_authenticated/feeloo'
     | '/_authenticated/financierplan'
+    | '/_authenticated/kooky'
     | '/_authenticated/nexusjob'
     | '/_authenticated/noject'
     | '/_authenticated/ocktavus'
@@ -3441,6 +3485,7 @@ export interface FileRouteTypes {
     | '/api/analyze'
     | '/api/chat'
     | '/api/chytect-edit-image'
+    | '/api/kooky-step'
     | '/calendsky/planning'
     | '/immo-bien/$id'
     | '/pascal-google/callback'
@@ -3506,6 +3551,7 @@ export interface FileRouteTypes {
     | '/_authenticated/financierplan/parametres'
     | '/_authenticated/immo/mes-biens'
     | '/_authenticated/immo/nouveau'
+    | '/_authenticated/kooky/dashboard'
     | '/_authenticated/mm/cockpit'
     | '/_authenticated/mm/connections'
     | '/_authenticated/mm/costs'
@@ -3616,6 +3662,7 @@ export interface FileRouteTypes {
     | '/_authenticated/feeloo/'
     | '/_authenticated/financierplan/'
     | '/_authenticated/immo/'
+    | '/_authenticated/kooky/'
     | '/_authenticated/mm/'
     | '/_authenticated/nexusjob/'
     | '/_authenticated/noject/'
@@ -3704,6 +3751,7 @@ export interface RootRouteChildren {
   ApiAnalyzeRoute: typeof ApiAnalyzeRoute
   ApiChatRoute: typeof ApiChatRoute
   ApiChytectEditImageRoute: typeof ApiChytectEditImageRoute
+  ApiKookyStepRoute: typeof ApiKookyStepRoute
   CalendskyPlanningRoute: typeof CalendskyPlanningRoute
   ImmoBienIdRoute: typeof ImmoBienIdRoute
   PascalGoogleCallbackRoute: typeof PascalGoogleCallbackRoute
@@ -3900,6 +3948,13 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof AuthenticatedIdeasRouteImport
       parentRoute: typeof AuthenticatedRouteRoute
     }
+    '/_authenticated/kooky': {
+      id: '/_authenticated/kooky'
+      path: '/kooky'
+      fullPath: '/kooky'
+      preLoaderRoute: typeof AuthenticatedKookyRouteRouteImport
+      parentRoute: typeof AuthenticatedRouteRoute
+    }
     '/_authenticated/mm': {
       id: '/_authenticated/mm'
       path: '/mm'
@@ -4045,6 +4100,13 @@ declare module '@tanstack/react-router' {
       path: '/api/chytect-edit-image'
       fullPath: '/api/chytect-edit-image'
       preLoaderRoute: typeof ApiChytectEditImageRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/api/kooky-step': {
+      id: '/api/kooky-step'
+      path: '/api/kooky-step'
+      fullPath: '/api/kooky-step'
+      preLoaderRoute: typeof ApiKookyStepRouteImport
       parentRoute: typeof rootRouteImport
     }
     '/calendsky/': {
@@ -4592,6 +4654,20 @@ declare module '@tanstack/react-router' {
       fullPath: '/immo/nouveau'
       preLoaderRoute: typeof AuthenticatedImmoNouveauRouteImport
       parentRoute: typeof AuthenticatedRouteRoute
+    }
+    '/_authenticated/kooky/': {
+      id: '/_authenticated/kooky/'
+      path: '/'
+      fullPath: '/kooky/'
+      preLoaderRoute: typeof AuthenticatedKookyIndexRouteImport
+      parentRoute: typeof AuthenticatedKookyRouteRoute
+    }
+    '/_authenticated/kooky/dashboard': {
+      id: '/_authenticated/kooky/dashboard'
+      path: '/dashboard'
+      fullPath: '/kooky/dashboard'
+      preLoaderRoute: typeof AuthenticatedKookyDashboardRouteImport
+      parentRoute: typeof AuthenticatedKookyRouteRoute
     }
     '/_authenticated/mm/': {
       id: '/_authenticated/mm/'
@@ -6051,6 +6127,22 @@ const AuthenticatedFinancierplanRouteRouteWithChildren =
     AuthenticatedFinancierplanRouteRouteChildren,
   )
 
+interface AuthenticatedKookyRouteRouteChildren {
+  AuthenticatedKookyDashboardRoute: typeof AuthenticatedKookyDashboardRoute
+  AuthenticatedKookyIndexRoute: typeof AuthenticatedKookyIndexRoute
+}
+
+const AuthenticatedKookyRouteRouteChildren: AuthenticatedKookyRouteRouteChildren =
+  {
+    AuthenticatedKookyDashboardRoute: AuthenticatedKookyDashboardRoute,
+    AuthenticatedKookyIndexRoute: AuthenticatedKookyIndexRoute,
+  }
+
+const AuthenticatedKookyRouteRouteWithChildren =
+  AuthenticatedKookyRouteRoute._addFileChildren(
+    AuthenticatedKookyRouteRouteChildren,
+  )
+
 interface AuthenticatedNexusjobRouteRouteChildren {
   AuthenticatedNexusjobCompaniesRoute: typeof AuthenticatedNexusjobCompaniesRoute
   AuthenticatedNexusjobDashboardRoute: typeof AuthenticatedNexusjobDashboardRoute
@@ -6532,6 +6624,7 @@ interface AuthenticatedRouteRouteChildren {
   AuthenticatedFacturodooRouteRoute: typeof AuthenticatedFacturodooRouteRouteWithChildren
   AuthenticatedFeelooRouteRoute: typeof AuthenticatedFeelooRouteRouteWithChildren
   AuthenticatedFinancierplanRouteRoute: typeof AuthenticatedFinancierplanRouteRouteWithChildren
+  AuthenticatedKookyRouteRoute: typeof AuthenticatedKookyRouteRouteWithChildren
   AuthenticatedNexusjobRouteRoute: typeof AuthenticatedNexusjobRouteRouteWithChildren
   AuthenticatedNojectRouteRoute: typeof AuthenticatedNojectRouteRouteWithChildren
   AuthenticatedOcktavusRouteRoute: typeof AuthenticatedOcktavusRouteRouteWithChildren
@@ -6588,6 +6681,7 @@ const AuthenticatedRouteRouteChildren: AuthenticatedRouteRouteChildren = {
   AuthenticatedFeelooRouteRoute: AuthenticatedFeelooRouteRouteWithChildren,
   AuthenticatedFinancierplanRouteRoute:
     AuthenticatedFinancierplanRouteRouteWithChildren,
+  AuthenticatedKookyRouteRoute: AuthenticatedKookyRouteRouteWithChildren,
   AuthenticatedNexusjobRouteRoute: AuthenticatedNexusjobRouteRouteWithChildren,
   AuthenticatedNojectRouteRoute: AuthenticatedNojectRouteRouteWithChildren,
   AuthenticatedOcktavusRouteRoute: AuthenticatedOcktavusRouteRouteWithChildren,
@@ -6696,6 +6790,7 @@ const rootRouteChildren: RootRouteChildren = {
   ApiAnalyzeRoute: ApiAnalyzeRoute,
   ApiChatRoute: ApiChatRoute,
   ApiChytectEditImageRoute: ApiChytectEditImageRoute,
+  ApiKookyStepRoute: ApiKookyStepRoute,
   CalendskyPlanningRoute: CalendskyPlanningRoute,
   ImmoBienIdRoute: ImmoBienIdRoute,
   PascalGoogleCallbackRoute: PascalGoogleCallbackRoute,
