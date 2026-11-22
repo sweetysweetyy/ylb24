@@ -3483,6 +3483,140 @@ export type Database = {
         }
         Relationships: []
       }
+      ky_lead_searches: {
+        Row: {
+          brief: string | null
+          created_at: string
+          error: string | null
+          id: string
+          location: string | null
+          sector: string
+          status: string
+          target_count: number
+          updated_at: string
+          user_id: string
+        }
+        Insert: {
+          brief?: string | null
+          created_at?: string
+          error?: string | null
+          id?: string
+          location?: string | null
+          sector: string
+          status?: string
+          target_count?: number
+          updated_at?: string
+          user_id?: string
+        }
+        Update: {
+          brief?: string | null
+          created_at?: string
+          error?: string | null
+          id?: string
+          location?: string | null
+          sector?: string
+          status?: string
+          target_count?: number
+          updated_at?: string
+          user_id?: string
+        }
+        Relationships: []
+      }
+      ky_leads: {
+        Row: {
+          analysis: string | null
+          approach: string | null
+          city: string | null
+          company_name: string
+          company_size: string | null
+          contacts: Json
+          country: string | null
+          created_at: string
+          email: string | null
+          error: string | null
+          id: string
+          odoo_lead_id: number | null
+          odoo_partner_id: number | null
+          phone: string | null
+          position: number
+          score: number | null
+          search_id: string
+          sector: string | null
+          sources: Json
+          status: string
+          street: string | null
+          summary: string | null
+          updated_at: string
+          user_id: string
+          website: string | null
+          zip: string | null
+        }
+        Insert: {
+          analysis?: string | null
+          approach?: string | null
+          city?: string | null
+          company_name: string
+          company_size?: string | null
+          contacts?: Json
+          country?: string | null
+          created_at?: string
+          email?: string | null
+          error?: string | null
+          id?: string
+          odoo_lead_id?: number | null
+          odoo_partner_id?: number | null
+          phone?: string | null
+          position?: number
+          score?: number | null
+          search_id: string
+          sector?: string | null
+          sources?: Json
+          status?: string
+          street?: string | null
+          summary?: string | null
+          updated_at?: string
+          user_id?: string
+          website?: string | null
+          zip?: string | null
+        }
+        Update: {
+          analysis?: string | null
+          approach?: string | null
+          city?: string | null
+          company_name?: string
+          company_size?: string | null
+          contacts?: Json
+          country?: string | null
+          created_at?: string
+          email?: string | null
+          error?: string | null
+          id?: string
+          odoo_lead_id?: number | null
+          odoo_partner_id?: number | null
+          phone?: string | null
+          position?: number
+          score?: number | null
+          search_id?: string
+          sector?: string | null
+          sources?: Json
+          status?: string
+          street?: string | null
+          summary?: string | null
+          updated_at?: string
+          user_id?: string
+          website?: string | null
+          zip?: string | null
+        }
+        Relationships: [
+          {
+            foreignKeyName: "ky_leads_search_id_fkey"
+            columns: ["search_id"]
+            isOneToOne: false
+            referencedRelation: "ky_lead_searches"
+            referencedColumns: ["id"]
+          },
+        ]
+      }
       lab_activity: {
         Row: {
           app_key: string | null
